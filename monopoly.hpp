@@ -11,18 +11,21 @@ struct Player{
 
 }
 struct Property{
+Property* next;
+int retail;
+int rent;
+int house;
+int house2;
+int house3;
+int hotel;
+int costHouse;
+int costHotel;
+bool owned;
+string color;
 
 }
 
-=======
 
-struct Player{
-  int money;
-
->>>>>>> 3d4b59357b9118621a7af3172b542cf814836e1b
-}
-
->>>>>>> 5406f6e592e4ddd016bcde78e1420d458e6efa4e
 class Monopoly{
   public:
     int rollDice();
