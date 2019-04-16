@@ -1,5 +1,7 @@
-Struct Player{
-adsfadfewafasef
+
+struct Player{
+  int money;
+
 }
 class Monopoly{
 
