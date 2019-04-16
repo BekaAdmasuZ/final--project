@@ -5,7 +5,7 @@ struct Player{
 }
 
 Struct Player{
-ihlijli
+ihlijlia
 }
 
 
