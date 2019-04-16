@@ -5,11 +5,6 @@
 #include <vector>
 
 
-
-struct Player{
-  int money;
-
-}
 struct Property{
 Property* next;
 int retail;
@@ -23,7 +18,12 @@ int costHotel;
 bool owned;
 string color;
 
-}
+};
+struct Player{
+  int money;
+
+};
+
 
 class Monopoly{
   public:
@@ -35,4 +35,4 @@ class Monopoly{
   private:
     // head of the linked list goes here
 
-}
+};
