@@ -6,29 +6,17 @@
 
 
 struct Property{
-Property* next;
-int retail;
-int rent;
-int house;
-int house2;
-int house3;
-int hotel;
-int costHouse;
-int costHotel;
-bool owned;
-string color;
 
 };
+
 struct Player{
   int money;
   vector <Property *> owned;
+  int doublesRolled;
 };
 
 
-};
 
-
->>>>>>> 1d223ae1572e6db9c1508bd2e8703863b32b8179
 class Monopoly{
   public:
     int rollDice();
