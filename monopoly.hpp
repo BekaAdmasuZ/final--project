@@ -8,5 +8,5 @@ class Monopoly{
 }
 
 Struct Player{
-ihlijli
+bbihlijlia
 }
