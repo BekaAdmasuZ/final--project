@@ -6,7 +6,17 @@
 
 
 struct Property{
-
+  Property* next;
+  int retail;
+  int rent;
+  int house;
+  int house2;
+  int house3;
+  int hotel;
+  int costHouse;
+  int costHotel;
+  bool owned;
+  string color;
 };
 
 struct Player{
