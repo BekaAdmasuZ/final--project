@@ -12,5 +12,4 @@ class Monopoly{
     int rollDice();
     void addplayer(string name);
     
-
 }
