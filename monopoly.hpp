@@ -4,13 +4,6 @@ struct Player{
 
 }
 
-Struct Player{
-ihlijlia
-\abacdfakldsj;feka
-}
-
-
-
 class Monopoly{
 
 }
