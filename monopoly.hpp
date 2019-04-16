@@ -1,14 +1,6 @@
-
-struct Player{
-  int money;
-
-}
-
 Struct Player{
-ihlijlia
+int a;
 }
-
-
 
 class Monopoly{
 
