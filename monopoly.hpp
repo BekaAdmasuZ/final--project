@@ -3,14 +3,14 @@ struct Player{
   int money;
 
 }
+struct Property{
 
-Struct Player{
-ihlijlia
-\abacdfakldsj;feka
 }
 
-
-
 class Monopoly{
+  public:
+    int rollDice();
+    void addplayer(string name);
+    
 
 }
