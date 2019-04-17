@@ -1,5 +1,7 @@
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
+// #pragma once
+
 
 #include <string>
 #include <vector>
@@ -16,13 +18,13 @@ struct Property{
   int costHouse;
   int costHotel;
   bool owned;
-  string color;
-  string name;
+  std::string color;
+  std::string name;
 };
 
 struct Player{
   int money;
-  vector <Property *> owned;
+  std::vector <Property *> owned;
   int doublesRolled;
   bool jail;
 };
@@ -35,9 +37,10 @@ class Monopoly{
     int rollDice();
     bool isEmpty();
     bool isFull();
-    void addplayer(string name);//enque
-    void removeplayer(string name);//deque
-    void addProperty(string title, string color, int initialCost, int land, int h1,int h2, int h3, int hh, int hc, int hhc,);//use a hashtable for property
+    void isTurn();//keeps track of palyers turn and what the rolled on the dice and everything!
+    void addplayer(std::string name);//enque
+    void removeplayer(std::string name);//deque
+    void addProperty(std::string title, std::string color, int initialCost, int land, int h1,int h2, int h3, int hh, int hc, int hhc);//use a hashtable for property
 
 
   private:
