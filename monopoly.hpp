@@ -37,7 +37,7 @@ class Monopoly{
     bool isFull();
     void addplayer(string name);//enque
     void removeplayer(string name);//deque
-    void addProperty(string title, string color, int initialCost, int land, int h1,int h2, int h3, int hh, int hc, int hhc,);
+    void addProperty(string title, string color, int initialCost, int land, int h1,int h2, int h3, int hh, int hc, int hhc,);//use a hashtable for property
 
 
   private:
