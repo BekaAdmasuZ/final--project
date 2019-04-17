@@ -27,25 +27,26 @@ struct Player{
   bool jail;
 };
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 89ea52d8ffe9e9dd28eb0b0641091f82795d4617
+const int SIZE =8;
 class Monopoly{
   public:
     Monopoly();
     ~Monopoly();
     int rollDice();
+    bool isEmpty();
+    bool isFull();
     void addplayer(string name);//enque
     void removeplayer(string name);//deque
     void addProperty(string title, string color, int initialCost, int land, int h1,int h2, int h3, int hh, int hc, int hhc,);
-    
 
 
   private:
     // head of the linked list goes here
     Property * GO;
     Property * Tail;
+
+    int Front;             // the index in queue[] that will be dequeued next
+    int End;               // the index in queue[] that was most recently enqueued
+    std::string playerarray[SIZE];
 
 };
