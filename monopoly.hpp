@@ -17,12 +17,14 @@ struct Property{
   int costHotel;
   bool owned;
   string color;
+  string name;
 };
 
 struct Player{
   int money;
   vector <Property *> owned;
   int doublesRolled;
+  bool jail;
 };
 
 
@@ -34,8 +36,12 @@ class Monopoly{
     int rollDice();
     void addplayer(string name);//enque
     void removeplayer(string name);//deque
+    void addProperty(string title, string color, int initialCost, int land, int h1,int h2, int h3, int hh, int hc, int hhc,);
+    
 
   private:
     // head of the linked list goes here
+    Property * GO;
+    Property * Tail;
 
 };
