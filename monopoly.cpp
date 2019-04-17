@@ -2,13 +2,14 @@
 #include"monopoly.hpp"
 using namespace std;
  Monopoly::Monopoly(){
-
+   //consturctor
  }
  Monopoly::~Monopoly(){
+   //distructor
 
  }
  int Monopoly::rollDice(){
-   int value = rand() % 6 + 1;
+   int value = rand() % 6 + 1;//randomizes number
    return value;
  }
  void Monopoly::addplayer(string name){
@@ -37,7 +38,12 @@ using namespace std;
    }
 
  void Monopoly::removeplayer(string name){
+   //if a player has no money or in debt and can't pay back they get dequeued
 
+ }
+ void Monopoly::isTurn(){
+   //call the roll dice twice and check what they got
+   //update the players status and what property they're on.
  }
  int main(){
    Monopoly P;
@@ -59,5 +65,6 @@ using namespace std;
      }
    }
    P.isTurn();
+
 
    }
