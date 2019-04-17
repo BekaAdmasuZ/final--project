@@ -16,5 +16,3 @@ using namespace std;
  void Monopoly::removeplayer(string name){
 
  }
-
- 

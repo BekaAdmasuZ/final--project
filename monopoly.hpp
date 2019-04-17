@@ -25,10 +25,6 @@ struct Player{
 };
 
 
-};
-
-
->>>>>>> 1d223ae1572e6db9c1508bd2e8703863b32b8179
 class Monopoly{
   public:
     Monopoly();
@@ -36,6 +32,7 @@ class Monopoly{
     int rollDice();
     void addplayer(string name);//enque
     void removeplayer(string name);//deque
+
 
   private:
     // head of the linked list goes here
