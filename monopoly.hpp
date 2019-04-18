@@ -9,6 +9,8 @@
 
 struct Property{
   Property* next;
+  std::string name;
+  std::string color;
   int retail;
   int rent;
   int house;
@@ -17,9 +19,13 @@ struct Property{
   int hotel;
   int costHouse;
   int costHotel;
+  int Freepark;
   bool owned;
-  std::string color;
-  std::string name;
+  bool cc;
+  bool GO;
+  bool EX
+  int xIndex;
+  int yIndex;
 };
 
 struct Player{
@@ -41,12 +47,15 @@ class Monopoly{
     void addplayer(std::string name);//enque
     void removeplayer(std::string name);//deque
     void addProperty(std::string title, std::string color, int initialCost, int land, int h1,int h2, int h3, int hh, int hc, int hhc);//use a hashtable for property
+    void addlinkedlist(int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,bool owned_,std::string color_,std::string name_,int xIndex_,int yIndex);
 
 
   private:
     // head of the linked list goes here
-    Property * GO;
-    Property * Tail;
+    Property * head=NULL;
+    Property *tail=NULL;
+    // prev->next=head;
+    Property matrix[11][11];
 
     int Front;             // the index in queue[] that will be dequeued next
     int End;               // the index in queue[] that was most recently enqueued
