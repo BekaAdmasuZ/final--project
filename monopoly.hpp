@@ -24,11 +24,6 @@ struct Player{
   vector <Property *> owned;
 };
 
-
-};
-
-
->>>>>>> 1d223ae1572e6db9c1508bd2e8703863b32b8179
 class Monopoly{
   public:
     Monopoly();
