@@ -86,6 +86,27 @@ using namespace std;
     cout<<"-";
   }
  }
+
+ void Monopoly::addplayer(string name){
+   if(isFull()){
+	 cout<<"Limted 8 players, cannot add new player"<<endl;
+   return;
+   }
+   Player a = new Player;
+   a.name = name;
+   a.money = 1500;
+   a.jail = false;
+   a.doublesRolled = 0;
+   if(isEmpty()){
+     playerarray[Front] = a;
+     End = Front;
+   }
+   else{
+    playerarray[End+1] = a;
+    End++;
+  }
+ }
+
  void addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,int Freepark_,bool owned_,bool cc_,bool GO_,bool EX_,int xIndex_,int yIndex_){
    Property * temp= new Property;
    temp->retail=retail_;
