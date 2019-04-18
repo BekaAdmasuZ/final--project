@@ -1,7 +1,14 @@
 #include<iostream>
+#include<fstream>
+#include<string>
 #include<sstream>
-//#include"monopoly.hpp"
+#include<math.h>
 #include<iomanip>
+#include<stdio.h>
+#include<string.h>
+
+using namespace std;
+//#include"monopoly.hpp"
 using namespace std;
  // Monopoly::Monopoly(){
  //   //consturctor
@@ -47,6 +54,7 @@ using namespace std;
  //   //call the roll dice twice and check what they headt
  //   //update the players status and what property they're on.
  // }
+
  struct Property{
    Property* next;
    std::string name;
@@ -62,8 +70,11 @@ using namespace std;
    int Freepark;
    bool owned;
    bool cc;
+   bool chance;
+   bool jail;
    bool GO;
-   bool EX
+   bool EX;
+   bool tax;
    int xIndex;
    int yIndex;
  };
@@ -86,7 +97,7 @@ using namespace std;
     cout<<"-";
   }
  }
- void addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,int Freepark_,bool owned_,bool cc_,bool GO_,bool EX_,int xIndex_,int yIndex_){
+ void addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,bool cc_,bool chance_,bool jail_,int Freepark_,bool GO_,bool EX_,bool tax_,bool owned_,int xIndex_,int yIndex_){
    Property * temp= new Property;
    temp->retail=retail_;
    temp->rent=rent_;
@@ -103,11 +114,13 @@ using namespace std;
    temp->yIndex=yIndex_;
    temp->name=name_;
    temp->color=color_;
+   temp->chance=chance_;
+   temp->jail=jail_;
    temp->Freepark=Freepark_;
+   temp->tax=tax_;
    temp->cc=cc_;
    temp->GO=GO_;
    temp->EX=EX_;
-
    if(head==NULL)
    {
      temp->next=head;
@@ -119,60 +132,68 @@ using namespace std;
     tail->next = head;
    }
     Property *islist=head;
-    matrix[islist->xIndex][islist->yIndex]=*islist;
+    while(islist->next!=head)
+    {
+      matrix[islist->xIndex][islist->yIndex]=*islist;
+      islist=islist->next;
+    }
  }
  int main(){
    string name, color;
    int retail, rent, house,house2, house3, hotel, costHouse, costHotel, Freepark;
-   bool owned, cc, GO, EX;
+   bool chance, jail, tax, owned, cc, GO, EX;
    int xIndex, yIndex;
    string line="";
-   ifstream file("Monopoly.txt");
+   ifstream file("monopoly.csv");
    if(file.is_open())
    {
      while(getline(file,line)){
        stringstream ss;
        ss<<line;
        string info;
-         getline(ss,info,',');
-          name=info;
-         getline(ss,info,',');
-          color=info;
-         getline(ss,info,',');
-          retail=stoi(info);
-         getline(ss,info,',');
-          rent=stoi(info);
-         getline(ss,info,',');
-          house=stoi(info);
-         getline(ss,info,',');
-          house2=stoi(info);
-         getline(ss,info,',');
-          house3=stoi(info);
-         getline(ss,info,',');
-          hotel=stoi(info);
-         getline(ss,info,',');
-          costHouse=stoi(info);
-         getline(ss,info,',');
-          costHotel=stoi(info);
-         getline(ss,info,',');
-          Freepark=stoi(info);
-         getline(ss,info,',');
-          bool owned;
-         getline(ss,info,',');
-          bool cc;
-         getline(ss,info,',');
-          bool GO;
-         getline(ss,info,',');
-          bool EX;
-         getline(ss,info,',');
-          xIndex =stoi(info);
-         getline(ss,info,',');
-          yIndex =stoi(info);
-         // getline(ss,info,',');
-         addlinkedlist(name,color,retail,rent,house,house2,house3,hotel,costHouse,costHotel,Freepark,owned,cc,GO,EX,xIndex,yIndex);
+      getline(ss,info,',');
+        name=info;
+      getline(ss,info,',');
+        color=info;
+      getline(ss,info,',');
+        retail=stoi(info);
+      getline(ss,info,',');
+        rent=stoi(info);
+      getline(ss,info,',');
+        house=stoi(info);
+      getline(ss,info,',');
+        house2=stoi(info);
+      getline(ss,info,',');
+        house3=stoi(info);
+      getline(ss,info,',');
+        hotel=stoi(info);
+      getline(ss,info,',');
+        costHouse=stoi(info);
+      getline(ss,info,',');
+        costHotel=stoi(info);
+      getline(ss,info,',');
+        cc=stoi(info);
+      getline(ss,info,',');
+        chance=stoi(info);
+      getline(ss,info,',');
+        jail=stoi(info);
+      getline(ss,info,',');
+        Freepark=stoi(info);
+      getline(ss,info,',');
+        GO=stoi(info);
+      getline(ss,info,',');
+        EX=stoi(info);
+      getline(ss,info,',');
+        tax=stoi(info);
+      getline(ss,info,',');
+        owned=stoi(info);
+      getline(ss,info,',');
+        xIndex =stoi(info);
+      getline(ss,info,',');
+        yIndex =stoi(info);
+      addlinkedlist(name,color,retail,rent,house,house2,house3,hotel,costHouse,costHotel,cc,chance,jail,Freepark,GO,EX,tax,owned,xIndex,yIndex);
      }
    }
-
    printBoard();
    // Monopoly P;
    // cout<<"WELCOME TO MONOPOLY"<<endl;
@@ -195,4 +216,4 @@ using namespace std;
    // P.isTurn();
    // cout<<"hi"<<<<"hello"
 
-   }
+  }
