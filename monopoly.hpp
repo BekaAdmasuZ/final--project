@@ -22,8 +22,11 @@ struct Property{
   int Freepark;
   bool owned;
   bool cc;
+  bool chance;
+  bool jail;
   bool GO;
-  bool EX
+  bool EX;
+  bool tax;
   int xIndex;
   int yIndex;
 };
