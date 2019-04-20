@@ -38,7 +38,6 @@ struct Player{
   bool jail;
 };
 
-const int SIZE =8;
 class Monopoly{
   public:
     Monopoly();
