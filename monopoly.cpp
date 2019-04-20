@@ -6,8 +6,6 @@
 #include<iomanip>
 #include<stdio.h>
 #include<string.h>
-
-using namespace std;
 //#include"monopoly.hpp"
 using namespace std;
  // Monopoly::Monopoly(){
@@ -87,38 +85,53 @@ using namespace std;
   for(int i=0;i<110;i++){
     cout<<"-";
   }
-
+  cout<<endl;
   Property *temp=head;
-  while(temp->next!=head){
-    cout<<setw(10)<<matrix[temp->xIndex][temp->yIndex].house<<"|"<<endl;
-    temp=temp->next;
+  // while(temp->next!=head){
+  for(int i=0;i<11;i++)
+  {
+    for(int j=0; j<11;j++)
+    {
+      if(j==0 || j==10 || i==0 || i == 10)
+      {
+        cout<<matrix[j][i].name<<"|";
+      }
+      else
+      {
+        cout<<"                            ";
+      }
+    }
+    cout<<endl;
   }
+    // cout<<setw(10)<<matrix[5][5].name<<"|"<<endl;
+
+  // }
   for(int i=0;i<110;i++){
     cout<<"-";
   }
  }
 
- void Monopoly::addplayer(string name){
-   if(isFull()){
-	 cout<<"Limted 8 players, cannot add new player"<<endl;
-   return;
-   }
-   Player a = new Player;
-   a.name = name;
-   a.money = 1500;
-   a.jail = false;
-   a.doublesRolled = 0;
-   if(isEmpty()){
-     playerarray[Front] = a;
-     End = Front;
-   }
-   else{
-    playerarray[End+1] = a;
-    End++;
-  }
- }
+ // void addplayer(string name){
+ //   if(isFull()){
+	//  cout<<"Limted 8 players, cannot add new player"<<endl;
+ //   return;
+ //   }
+ //   Player a = new Player;
+ //   a.name = name;
+ //   a.money = 1500;
+ //   a.jail = false;
+ //   a.doublesRolled = 0;
+ //   if(isEmpty()){
+ //     playerarray[Front] = a;
+ //     End = Front;
+ //   }
+ //   else{
+ //    playerarray[End+1] = a;
+ //    End++;
+ //  }
+ // }
 
- void addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,int Freepark_,bool owned_,bool cc_,bool GO_,bool EX_,int xIndex_,int yIndex_){
+ void addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,bool cc_,bool chance_,bool jail_,int Freepark_,bool GO_,bool EX_,bool tax_,bool owned_,int xIndex_,int yIndex_){
    Property * temp= new Property;
    temp->retail=retail_;
    temp->rent=rent_;
@@ -142,42 +155,55 @@ using namespace std;
    temp->cc=cc_;
    temp->GO=GO_;
    temp->EX=EX_;
-   if(head==NULL)
+
+   if(head==NULL )
    {
      temp->next=head;
-     head= tail = temp;
+     head= temp;
+     tail=temp;
    }
    else{
     tail->next= temp;
     tail = temp;
     tail->next = head;
    }
-    Property *islist=head;
-    while(islist->next!=head)
-    {
-      matrix[islist->xIndex][islist->yIndex]=*islist;
-      islist=islist->next;
-    }
+// cout<<"hello"<<endl;
+    // cout<<"hello"<<endl;
+    return;
+ }
+ void addmatrix()
+ {
+   Property *islist=head;
+   while(islist->next!=head)
+   {
+     matrix[islist->xIndex][islist->yIndex]=*islist;
+     islist=islist->next;
+   }
  }
  int main(){
    string name, color;
    int retail, rent, house,house2, house3, hotel, costHouse, costHotel, Freepark;
    bool chance, jail, tax, owned, cc, GO, EX;
-   int xIndex, yIndex;
-   string line="";
-   ifstream file("monopoly.csv");
-   if(file.is_open())
+   int xIndex=0;
+   int yIndex=0;
+   ifstream myFile("monopoly.csv");
+   if(myFile.is_open())
    {
-     while(getline(file,line)){
-       stringstream ss;
-       ss<<line;
-       string info;
+     string line="";
+     while(getline(myFile,line)){
+       stringstream ss(line);
+       // ss << line;
+       string info="";
       getline(ss,info,',');
-        name=info;
+       name=info;
+        // cout<<name<<endl;
       getline(ss,info,',');
-        color=info;
+       color=info;
+        // cout<<color<<endl;
       getline(ss,info,',');
+        cout<<info<<endl;
         retail=stoi(info);
+        // cout<<"hello"<<endl;
       getline(ss,info,',');
         rent=stoi(info);
       getline(ss,info,',');
@@ -194,8 +220,9 @@ using namespace std;
         costHotel=stoi(info);
       getline(ss,info,',');
         cc=stoi(info);
+        //from here to bottom the stoi is for booleans
       getline(ss,info,',');
-        chance=stoi(info);
+         chance=stoi(info);
       getline(ss,info,',');
         jail=stoi(info);
       getline(ss,info,',');
@@ -212,9 +239,14 @@ using namespace std;
         xIndex =stoi(info);
       getline(ss,info,',');
         yIndex =stoi(info);
+
       addlinkedlist(name,color,retail,rent,house,house2,house3,hotel,costHouse,costHotel,cc,chance,jail,Freepark,GO,EX,tax,owned,xIndex,yIndex);
+
      }
+     myFile.close();
    }
+
+   addmatrix();
    printBoard();
    // Monopoly P;
    // cout<<"WELCOME TO MONOPOLY"<<endl;
