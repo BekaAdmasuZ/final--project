@@ -98,8 +98,9 @@ using namespace std;
       }
       else
       {
-        cout<<"                            ";
-      }
+        for(int i=0; i<15;i++){
+          cout<<" ";
+        }      }
     }
     cout<<endl;
   }
