@@ -6,6 +6,7 @@
 #include<iomanip>
 #include<stdio.h>
 #include<string.h>
+#include<vector>
 //#include"monopoly.hpp"
 using namespace std;
  // Monopoly::Monopoly(){
@@ -75,6 +76,7 @@ using namespace std;
    bool tax;
    int xIndex;
    int yIndex;
+   //vector <Player> players;
  };
  Property * head=NULL;
  Property *tail=NULL;
@@ -92,13 +94,21 @@ using namespace std;
   {
     for(int j=0; j<11;j++)
     {
-      if(j==0 || j==10 || i==0 || i == 10)
+      int k = 15;
+      if(j==0 || j==10 || (j>=3 & j<=7) && (i>=3 && i<=7) || i==0 || i == 10)
       {
-        cout<<matrix[j][i].name<<"|";
+        k = k - matrix[j][i].name.length();
+        cout<<matrix[j][i].name;
+        for(int r = 0; r < k ; r++){
+          cout<<" ";
+        }
+        cout<<"|";
       }
-      else
-      {
-        cout<<"                            ";
+      else{
+        for(int r = 0; r < k ; r++){
+          cout<<" ";
+        }
+        cout<<" ";
       }
     }
     cout<<endl;
@@ -201,7 +211,6 @@ using namespace std;
        color=info;
         // cout<<color<<endl;
       getline(ss,info,',');
-        cout<<info<<endl;
         retail=stoi(info);
         // cout<<"hello"<<endl;
       getline(ss,info,',');
