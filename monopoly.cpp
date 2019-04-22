@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -14,8 +14,9 @@ Monopoly::Monopoly(){
    //consturctor
   head= NULL;
   tail=NULL;
-  numPlayers=0;
+  numPlayers=8;
   playersIn=0;
+  // playerarray[numPlayers];
 }
  Monopoly::~Monopoly(){
    //distructor
@@ -55,14 +56,54 @@ Monopoly::Monopoly(){
  //
  // }
  // void Monopoly::isTurn(){
- //   //call the roll dice twice and check what they headt
- //   //update the players status and what property they're on.
+ //   // player[0].charac='A';
+ //   // player[1].charac='B';
+ //   // player[3].charac='C';
+ //   // player[4].charac='D';
+ //   x=rolldice();
+ //   y=rolldice();
+ //   int g=x+y;
+ //   for(int i=0; i<g;i++)
+ //   {
+ //     if(player.x==10&&player.y!=10)
+ //     {
+ //       player.y++;
+ //     }
+ //     if(player.x==0&&player.y!=0)
+ //     {
+ //       player.x++;
+ //     }
+ //     if(player.x==10&&player.y!=0)
+ //     {
+ //       player.x--;
+ //     }
+ //     if(player.x==0&&player.y!=10)
+ //     {
+ //       player.y--;
+ //     }
+ //   }
+ //   // check players position
+ //
+ //
+ //
+ //   if(matrix[x][y].owned==true)
+ //   {
+ //     you owe someone, go thru players;
+ //   }
+ //   else{
+ //     do you wanna buy it
+ //     if(yes)
+ //     {
+ //       matrix[x][y].owned=true
+ //     }
+ //   }
+ //
  // }
-
+ //
 
 //
 void Monopoly::printBoard(){
-    for(int i=0;i<110;i++){
+    for(int i=0;i<180;i++){
       cout<<"-";
     }
     cout<<endl;
@@ -71,7 +112,7 @@ void Monopoly::printBoard(){
     for(int j=0; j<11;j++)
     {
       int k = 15;
-      if(j==0 || j==10 || ((j>=3 && j<=7) && (i>=3 && i<=7)) || i==0 || i == 10)
+      if(j==0 || j==10 || ((j==3 || j == 7) && i>=3 && i<=7) || ((i==3 || i == 7) && j>=3 && j<=7) || i==0 || i == 10)
       {
         k = k - matrix[j][i].name.length();
         cout<<matrix[j][i].name;
@@ -87,13 +128,42 @@ void Monopoly::printBoard(){
         cout<<" ";
       }
     }
-    cout<<endl;
+    cout<<"\n"<<endl;
+    for(int j=0; j<11;j++)
+    {
+      int k = 15;
+      if(j==0 || j==10 || ((j==3 || j == 7) && i>=3 && i<=7) || ((i==3 || i == 7) && j>=3 && j<=7) || i==0 || i == 10)
+      {
+        int sp=0;
+        int num = matrix[j][i].retail;
+        if(num > 0){
+          while(num != 0){
+            num = num/10;
+            sp++;
+          }
+          k = k - sp - 2;
+          cout<<"$ "<<matrix[j][i].retail;
+        }
+        for(int r = 0; r < k ; r++){
+          cout<<" ";
+        }
+        cout<<"|";
+      }
+      else{
+        for(int r = 0; r < k ; r++){
+          cout<<" ";
+        }
+        cout<<" ";
+      }
+    }
+    cout<<"\n"<<endl;
   }
 
-  for(int i=0;i<110;i++){
+  for(int i=0;i<180;i++){
     cout<<"-";
   }
  }
+
  // void addplayer(string name){
  //   if(isFull()){
 	//  cout<<"Limted 8 players, cannot add new player"<<endl;
@@ -282,5 +352,3 @@ void Monopoly::printBoard(){
    // cout<<"hi"<<<<"hello"
 
   }
-=======
->>>>>>> cc5f66a20e5fffd550e38c84f544228032865ade
