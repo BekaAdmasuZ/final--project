@@ -5,8 +5,8 @@
 
 
 #include <string>
-#include <vector>
 
+#include <queue>
 
 struct Property{
   Property* next;
@@ -30,7 +30,7 @@ struct Property{
   bool tax;
   int xIndex;
   int yIndex;
-  std::vector<char>currPla;
+  std::queue<char>currPla;
 };
 
 struct Player{
