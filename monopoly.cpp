@@ -301,7 +301,10 @@ using namespace std;
    }
  }
  M.setNumPlayers(playerNum);
+
     M.printBoard();
+    cout<<"The 1st player will be Player A, 2nd will be B, 3rd C etc."<<endl;
+    cout<<"Decide who is who. This will also be the order"
     while(M.playersIn()!=1){
 
     }
