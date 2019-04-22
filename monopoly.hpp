@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 // #pragma once
@@ -69,3 +70,5 @@ class Monopoly{
 
 };
 #endif
+=======
+>>>>>>> 8c71570d90ef5b049068dfb16561670bd790bf01

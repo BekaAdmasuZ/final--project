@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -281,3 +282,5 @@ void Monopoly::printBoard(){
    // cout<<"hi"<<<<"hello"
 
   }
+=======
+>>>>>>> 8c71570d90ef5b049068dfb16561670bd790bf01
