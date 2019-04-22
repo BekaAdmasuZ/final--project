@@ -214,7 +214,15 @@ using namespace std;
      islist=islist->next;
    }
  }
+ void Monopoly::Loser(){
+   playersIn--;
+ }
+ Void Monopoly::setNumPlayers(int n){
+   numPlayers=n;
+   playersIn=n;
+ }
  int main(){
+   int playerNum
    Monopoly M;
    string name, color;
    int retail, rent, house,house2, house3, hotel, costHouse, costHotel, Freepark;
@@ -282,6 +290,22 @@ using namespace std;
    }
 
    M.addmatrix();
+   cout<<"Welcome to Monopoly"<<endl;
+   cout<<"How many players are playing? (4-8 players)"<<endl;
+
+   getline(cin,playerNum);
+   while(playerNum<4 || playerNum>8){
+   if(playerNum<4 || playerNum>8){
+     cout<<"Please enter numbere in correct Range"<<endl;
+     getline(cin,playerNum);
+   }
+ }
+ M.setNumPlayers(playerNum);
+    M.printBoard();
+    while(M.playersIn()!=1){
+
+    }
+
    M.printBoard();
    // Monopoly P;
    // cout<<"WELCOME TO MONOPOLY"<<endl;
