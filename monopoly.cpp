@@ -7,7 +7,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<vector>
-//#include"monopoly.hpp"
+#include"monopoly.hpp"
 using namespace std;
  // Monopoly::Monopoly(){
  //   //consturctor
@@ -54,36 +54,8 @@ using namespace std;
  //   //update the players status and what property they're on.
  // }
 
- struct Property{
-   Property* next;
-   std::string name;
-   std::string color;
-   int retail;
-   int rent;
-   int house;
-   int house2;
-   int house3;
-   int hotel;
-   int costHouse;
-   int costHotel;
-   int Freepark;
-   bool owned;
-   bool cc;
-   bool chance;
-   bool jail;
-   bool GO;
-   bool EX;
-   bool tax;
-   int xIndex;
-   int yIndex;
-   //vector <Player> players;
- };
- Property * head=NULL;
- Property *tail=NULL;
- // prev->next=head;
- Property matrix[11][11];
 
- void printBoard(){
+ void Monopoly::printBoard(){
   for(int i=0;i<110;i++){
     cout<<"-";
   }
@@ -141,7 +113,7 @@ using namespace std;
  //  }
  // }
 
- void addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,bool cc_,bool chance_,bool jail_,int Freepark_,bool GO_,bool EX_,bool tax_,bool owned_,int xIndex_,int yIndex_){
+ void Monopoly::addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,bool cc_,bool chance_,bool jail_,int Freepark_,bool GO_,bool EX_,bool tax_,bool owned_,int xIndex_,int yIndex_){
    Property * temp= new Property;
    temp->retail=retail_;
    temp->rent=rent_;
@@ -181,7 +153,7 @@ using namespace std;
     // cout<<"hello"<<endl;
     return;
  }
- void addmatrix()
+ void Monopoly::addmatrix()
  {
    Property *islist=head;
    while(islist->next!=head)
@@ -190,15 +162,13 @@ using namespace std;
      islist=islist->next;
    }
  }
- void Monopoly::Loser(){
+ void Monopoly::loser(){
    playersIn--;
  }
- Void Monopoly::setNumPlayers(int n){
-   numPlayers=n;
-   playersIn=n;
- }
+
  int main(){
-   int playerNum
+   int playerNum;
+   string playerNumS;
    Monopoly M;
    string name, color;
    int retail, rent, house,house2, house3, hotel, costHouse, costHotel, Freepark;
@@ -258,7 +228,7 @@ using namespace std;
       getline(ss,info,',');
         yIndex =stoi(info);
 
-      addlinkedlist(name,color,retail,rent,house,house2,house3,hotel,costHouse,costHotel,cc,chance,jail,Freepark,GO,EX,tax,owned,xIndex,yIndex);
+      M.addlinkedlist(name,color,retail,rent,house,house2,house3,hotel,costHouse,costHotel,cc,chance,jail,Freepark,GO,EX,tax,owned,xIndex,yIndex);
 
      }
      myFile.close();
@@ -268,23 +238,19 @@ using namespace std;
    cout<<"Welcome to Monopoly"<<endl;
    cout<<"How many players are playing? (4-8 players)"<<endl;
 
-   getline(cin,playerNum);
+   getline(cin,playerNumS);
    while(playerNum<4 || playerNum>8){
    if(playerNum<4 || playerNum>8){
      cout<<"Please enter numbere in correct Range"<<endl;
-     getline(cin,playerNum);
+     getline(cin,playerNumS);
    }
  }
- M.setNumPlayers(playerNum);
 
     M.printBoard();
     cout<<"The 1st player will be Player A, 2nd will be B, 3rd C etc."<<endl;
-    cout<<"Decide who is who. This will also be the order"
-    while(M.playersIn()!=1){
+    cout<<"Decide who is who. This will also be the order";
 
-    }
 
-   M.printBoard();
    // Monopoly P;
    // cout<<"WELCOME TO MONOPOLY"<<endl;
    // cout<<"PRESS 1 IF YOU WANT TO LEARN THE RULE"<<endl;

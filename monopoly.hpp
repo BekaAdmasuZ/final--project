@@ -1,5 +1,5 @@
-#ifndef GRAPH_HPP
-#define GRAPH_HPP
+#ifndef MONOPOLY_HPP
+#define MONOPOLY_HPP
 // #pragma once
 
 
@@ -40,7 +40,7 @@ struct Player{
 
 class Monopoly{
   public:
-    Monopoly();
+    Monopoly(int player);
     ~Monopoly();
     int rollDice();
     bool isEmpty();
@@ -50,8 +50,9 @@ class Monopoly{
     void removeplayer(std::string name);//deque
     void addProperty(std::string title, std::string color, int initialCost, int land, int h1,int h2, int h3, int hh, int hc, int hhc);//use a hashtable for property
     void addlinkedlist(std::string name_,std::string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,bool cc_,bool chance_,bool jail_,int Freepark_,bool GO_,bool EX_,bool tax_,bool owned_,int xIndex_,int yIndex_);
+    void addmatrix();
     void loser();
-    void setPlayerNum(int n);
+    void printBoard();
   private:
     // head of the linked list goes here
     Property * head;
@@ -63,6 +64,7 @@ class Monopoly{
 
     int Front;             // the index in queue[] that will be dequeued next
     int End;               // the index in queue[] that was most recently enqueued
-    std::string playerarray[numPlayers];
 
 };
+
+#endif
