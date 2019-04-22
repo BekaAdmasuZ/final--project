@@ -204,46 +204,48 @@ void Monopoly:: game(){
    int savej;
    int index=0;
    for(int i=0; i<2; i++){
-     a=rollDice();
-     b=rollDice();
-     c=a+b;
-     for(int j=0; j<matrix[playerarray[index].x][playerarray[index].y].currPla.size();j++){
-   if(matrix[playerarray[index].x][playerarray[index].y].currPla[j]==playerarray[j].C){
-     savej=j;
-     break;
-   }
-   }
-   matrix[playerarray[index].x][playerarray[index].y].currPla.erase(matrix[playerarray[index].x][playerarray[index].y].currPla.begin()+1);
-     for(int i=0; i<c; i++){
-       if(playerarray[index].x==0 && playerarray[index].y!=0 && playerarray[index].y!=10 ){
-         playerarray[index].y--;
-       }
-       else if(playerarray[index].x==10 && playerarray[index].y!=0&& playerarray[index].y!=10){
-           playerarray[index].y++;
-       }
-       else if(playerarray[index].y==10 && playerarray[index].x!=0&& playerarray[index].x!=10){
-           playerarray[index].x--;
-       }
-       else if(playerarray[index].y==0 && playerarray[index].x!=0&& playerarray[index].x!=10){
-           playerarray[index].x++;
-             }
-             else if(playerarray[index].y==0 && playerarray[index].x==0){
-               playerarray[index].x++;
-             }
-             else if(playerarray[index].y==0&&playerarray[index].x==10){
-               playerarray[index].y++;
-             }
-             else if(playerarray[index].y==10&&playerarray[index].x==10){
-               playerarray[index].x--;
-             }
-             else if(playerarray[index].y==10&&playerarray[index].x==0){
-               playerarray[index].y--;
-             }
-     }
-     matrix[playerarray[index].x][playerarray[index].y].currPla.push_back(playerarray[index].C);
+        a=rollDice();
+        b=rollDice();
+        c=a+b;
+        for(int j=0; j<matrix[playerarray[index].x][playerarray[index].y].currPla.size();j++)
+        {
+        if(matrix[playerarray[index].x][playerarray[index].y].currPla[j]==playerarray[j].C){
+        savej=j;
+        break;
+        }
+        }
+        // cout<<"MEE"<<endl;
+        matrix[playerarray[index].x][playerarray[index].y].currPla.erase(matrix[playerarray[index].x][playerarray[index].y].currPla.begin()+1);
+        for(int i=0; i<c; i++){
+        if(playerarray[index].x==0 && playerarray[index].y!=0 && playerarray[index].y!=10 ){
+        playerarray[index].y--;
+        }
+        else if(playerarray[index].x==10 && playerarray[index].y!=0&& playerarray[index].y!=10){
+         playerarray[index].y++;
+        }
+        else if(playerarray[index].y==10 && playerarray[index].x!=0&& playerarray[index].x!=10){
+         playerarray[index].x--;
+        }
+        else if(playerarray[index].y==0 && playerarray[index].x!=0&& playerarray[index].x!=10){
+         playerarray[index].x++;
+           }
+           else if(playerarray[index].y==0 && playerarray[index].x==0){
+             playerarray[index].x++;
+           }
+           else if(playerarray[index].y==0&&playerarray[index].x==10){
+             playerarray[index].y++;
+           }
+           else if(playerarray[index].y==10&&playerarray[index].x==10){
+             playerarray[index].x--;
+           }
+           else if(playerarray[index].y==10&&playerarray[index].x==0){
+             playerarray[index].y--;
+           }
+        }
+        matrix[playerarray[index].x][playerarray[index].y].currPla.push_back(playerarray[index].C);
 
-   }
-   printBoard();
+        }
+        printBoard();
  }
 
 
@@ -433,7 +435,7 @@ void Monopoly:: game(){
 
 
      M.printBoard();
-     M.game();
+      M.game();
 
    // else{
    //   int counter=0;
