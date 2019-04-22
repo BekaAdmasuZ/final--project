@@ -1,4 +1,8 @@
-
+#include <stdio.h>
+#include <time.h>
+#include <unistd.h>
+#include <windows.h>
+#include <stdlib.h>
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -8,6 +12,8 @@
 #include<stdio.h>
 #include<string.h>
 #include<vector>
+#include<ctime>
+#include <cstdlib>
 #include"monopoly.hpp"
 using namespace std;
 Monopoly::Monopoly(){
@@ -23,8 +29,10 @@ Monopoly::Monopoly(){
 
  }
  int Monopoly::rollDice(){
-   int value = rand() % 6 + 1;//randomizes number
-   return value;
+   srand(time(NULL)); // Seed the tim
+   int finalNum = rand()%(6-1+1)+1;//randomizes number
+   cout<<"You rolled a"<< finalNum<<endl;
+   return finalNum;
  }
  void Monopoly::addplayer(string name,char car){
      Player a;
@@ -205,6 +213,7 @@ void Monopoly:: game(){
    int index=0;
    for(int i=0; i<2; i++){
      a=rollDice();
+     sleep(1);
      b=rollDice();
      c=a+b;
      for(int j=0; j<matrix[playerarray[index].x][playerarray[index].y].currPla.size();j++){
@@ -213,10 +222,13 @@ void Monopoly:: game(){
      break;
    }
    }
-   matrix[playerarray[index].x][playerarray[index].y].currPla.erase(matrix[playerarray[index].x][playerarray[index].y].currPla.begin()+1);
+
+  matrix[playerarray[index].x][playerarray[index].y].currPla.erase(  matrix[playerarray[index].x][playerarray[index].y].currPla.begin());
+
      for(int i=0; i<c; i++){
        if(playerarray[index].x==0 && playerarray[index].y!=0 && playerarray[index].y!=10 ){
          playerarray[index].y--;
+
        }
        else if(playerarray[index].x==10 && playerarray[index].y!=0&& playerarray[index].y!=10){
            playerarray[index].y++;
@@ -240,11 +252,17 @@ void Monopoly:: game(){
                playerarray[index].y--;
              }
      }
+
+
      matrix[playerarray[index].x][playerarray[index].y].currPla.push_back(playerarray[index].C);
 
+printBoard();
+
    }
-   printBoard();
+
+
  }
+
 
 
  void Monopoly::addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,bool cc_,bool chance_,bool jail_,int Freepark_,bool GO_,bool EX_,bool tax_,bool owned_,int xIndex_,int yIndex_){
