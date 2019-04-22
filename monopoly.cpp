@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -71,7 +70,7 @@ void Monopoly::printBoard(){
     for(int j=0; j<11;j++)
     {
       int k = 15;
-      if(j==0 || j==10 || ((j>=3 && j<=7) && (i>=3 && i<=7)) || i==0 || i == 10)
+      if(j==0 || j==10 || ((j==3 || j == 7) && i>=3 && i<=7) || ((i==3 || i == 7) && j>=3 && j<=7) || i==0 || i == 10)
       {
         k = k - matrix[j][i].name.length();
         cout<<matrix[j][i].name;
@@ -87,7 +86,35 @@ void Monopoly::printBoard(){
         cout<<" ";
       }
     }
-    cout<<endl;
+    cout<<"\n"<<endl;
+    for(int j=0; j<11;j++)
+    {
+      int k = 15;
+      if(j==0 || j==10 || ((j==3 || j == 7) && i>=3 && i<=7) || ((i==3 || i == 7) && j>=3 && j<=7) || i==0 || i == 10)
+      {
+        int sp=0;
+        int num = matrix[j][i].retail;
+        if(num > 0){
+          while(num != 0){
+            num = num/10;
+            sp++;
+          }
+          k = k - sp - 2;
+          cout<<"$ "<<matrix[j][i].retail;
+        }
+        for(int r = 0; r < k ; r++){
+          cout<<" ";
+        }
+        cout<<"|";
+      }
+      else{
+        for(int r = 0; r < k ; r++){
+          cout<<" ";
+        }
+        cout<<" ";
+      }
+    }
+    cout<<"\n"<<endl;
   }
 
   for(int i=0;i<110;i++){
@@ -282,5 +309,3 @@ void Monopoly::printBoard(){
    // cout<<"hi"<<<<"hello"
 
   }
-=======
->>>>>>> cc5f66a20e5fffd550e38c84f544228032865ade
