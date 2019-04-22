@@ -1,4 +1,10 @@
-
+#include <stdio.h>
+#include <time.h>
+#include <unistd.h>
+// #include <windows.h>
+#include<chrono>
+#include<thread>
+#include <stdlib.h>
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -8,6 +14,8 @@
 #include<stdio.h>
 #include<string.h>
 #include<vector>
+#include<ctime>
+#include <cstdlib>
 #include"monopoly.hpp"
 using namespace std;
 Monopoly::Monopoly(){
@@ -23,8 +31,10 @@ Monopoly::Monopoly(){
 
  }
  int Monopoly::rollDice(){
-   int value = rand() % 6 + 1;//randomizes number
-   return value;
+   srand(time(NULL)); // Seed the tim
+   int finalNum = rand()%(6-1+1)+1;//randomizes number
+   cout<<"You rolled a"<< finalNum<<endl;
+   return finalNum;
  }
  void Monopoly::addplayer(string name,char car){
      Player a;
@@ -197,6 +207,7 @@ void Monopoly::printBoard(){
   for(int i=0;i<180;i++){
     cout<<"-";
   }
+  cout<<endl;
  }
 
 void Monopoly:: game(){
@@ -204,49 +215,57 @@ void Monopoly:: game(){
    int savej;
    int index=0;
    for(int i=0; i<2; i++){
-        a=rollDice();
-        b=rollDice();
-        c=a+b;
-        for(int j=0; j<matrix[playerarray[index].x][playerarray[index].y].currPla.size();j++)
-        {
-        if(matrix[playerarray[index].x][playerarray[index].y].currPla[j]==playerarray[j].C){
-        savej=j;
-        break;
-        }
-        }
-        // cout<<"MEE"<<endl;
-        matrix[playerarray[index].x][playerarray[index].y].currPla.erase(matrix[playerarray[index].x][playerarray[index].y].currPla.begin()+1);
-        for(int i=0; i<c; i++){
-        if(playerarray[index].x==0 && playerarray[index].y!=0 && playerarray[index].y!=10 ){
-        playerarray[index].y--;
-        }
-        else if(playerarray[index].x==10 && playerarray[index].y!=0&& playerarray[index].y!=10){
-         playerarray[index].y++;
-        }
-        else if(playerarray[index].y==10 && playerarray[index].x!=0&& playerarray[index].x!=10){
-         playerarray[index].x--;
-        }
-        else if(playerarray[index].y==0 && playerarray[index].x!=0&& playerarray[index].x!=10){
-         playerarray[index].x++;
-           }
-           else if(playerarray[index].y==0 && playerarray[index].x==0){
-             playerarray[index].x++;
-           }
-           else if(playerarray[index].y==0&&playerarray[index].x==10){
-             playerarray[index].y++;
-           }
-           else if(playerarray[index].y==10&&playerarray[index].x==10){
-             playerarray[index].x--;
-           }
-           else if(playerarray[index].y==10&&playerarray[index].x==0){
-             playerarray[index].y--;
-           }
-        }
-        matrix[playerarray[index].x][playerarray[index].y].currPla.push_back(playerarray[index].C);
+     a=rollDice();
+     sleep(1);
+     b=rollDice();
+     c=a+b;
+     for(int j=0; j<matrix[playerarray[index].x][playerarray[index].y].currPla.size();j++){
+     if(matrix[playerarray[index].x][playerarray[index].y].currPla[j]==playerarray[j].C){
+       savej=j;
+       break;
+   }
+   }
 
-        }
-        printBoard();
+  matrix[playerarray[index].x][playerarray[index].y].currPla.erase(  matrix[playerarray[index].x][playerarray[index].y].currPla.begin());
+
+     for(int i=0; i<c; i++){
+       if(playerarray[index].x==0 && playerarray[index].y!=0 && playerarray[index].y!=10 ){
+         playerarray[index].y--;
+
+       }
+       else if(playerarray[index].x==10 && playerarray[index].y!=0&& playerarray[index].y!=10){
+           playerarray[index].y++;
+       }
+       else if(playerarray[index].y==10 && playerarray[index].x!=0&& playerarray[index].x!=10){
+           playerarray[index].x--;
+       }
+       else if(playerarray[index].y==0 && playerarray[index].x!=0&& playerarray[index].x!=10){
+           playerarray[index].x++;
+             }
+             else if(playerarray[index].y==0 && playerarray[index].x==0){
+               playerarray[index].x++;
+             }
+             else if(playerarray[index].y==0&&playerarray[index].x==10){
+               playerarray[index].y++;
+             }
+             else if(playerarray[index].y==10&&playerarray[index].x==10){
+               playerarray[index].x--;
+             }
+             else if(playerarray[index].y==10&&playerarray[index].x==0){
+               playerarray[index].y--;
+             }
+     }
+
+
+     matrix[playerarray[index].x][playerarray[index].y].currPla.push_back(playerarray[index].C);
+
+printBoard();
+
+   }
+
+
  }
+
 
 
  void Monopoly::addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,bool cc_,bool chance_,bool jail_,int Freepark_,bool GO_,bool EX_,bool tax_,bool owned_,int xIndex_,int yIndex_){
@@ -377,22 +396,23 @@ void Monopoly:: game(){
      myFile.close();
    }
     M.addmatrix();
-   cout<<"WELCOME TO MONOPOLY"<<endl;
+   cout<<"---------"<<"WELCOME TO MONOPOLY"<<"---------"<<endl;
    cout<<"PRESS 1 IF YOU WANT TO LEARN THE RULE, PRESS 2 IF YOU DONT"<<endl;
    string value;
    getline(cin,value);
    if(stoi(value)==1){
-        cout<<"How does Monopoly work"<<endl;
+     cout<<"-------------------------------"<<endl;
+        cout<<"--------------"<<"How does Monopoly work"<<"----------------"<<endl;
         cout<<"Each player selects a Token to move around the board."<<endl;
         cout<<"Each token start at the Go box"<<endl;
         cout<<"Each player gets 1500$  (2* $500,  2* $100, 2* $50, 6* $20, 5*10, 5*$5, 5* 1  )"<<endl;
         cout<<"We need a banker that manages the money and property(I guess we can code this)"<<endl;
         cout<<"The blimp spaces send the player to the upper board"<<endl;
-        cout<<"Objective"<<endl;
+        cout<<"---"<<"Objective"<<endl;
         cout<<"To be the richest "<<endl;
         cout<<"Every round a player rolls a dice(we can use our code from 1300) and then the number you get from the dice is the num of boxes you’re going to move."<<endl;
         cout<<"And the boxes will tell us what to do."<<endl;
-        cout<<endl;
+        cout<<"------------------------------------------------------------"<<endl;
 
         cout<<"Great lets start"<<endl;
    }
@@ -417,7 +437,7 @@ void Monopoly:: game(){
            getline(cin,answer);
            if(answer=="y"||answer=="Y")
            {
-             cout<<"Great lets start"<<endl;
+             // cout<<"Great lets start"<<endl;
              cout<<"Put in next players name"<<endl;
            }
            else{
