@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -11,12 +11,18 @@
 #include"monopoly.hpp"
 using namespace std;
 Monopoly::Monopoly(){
-   //consturctor
   head= NULL;
   tail=NULL;
-  numPlayers=0;
-  playersIn=0;
+
 }
+// Monopoly::Monopoly(int n){
+//    //consturctor
+//   head= NULL;
+//   tail=NULL;
+//   numPlayers=n;
+//   playersIn=n;
+//
+// }
  Monopoly::~Monopoly(){
    //distructor
 
@@ -163,11 +169,14 @@ void Monopoly::printBoard(){
      islist=islist->next;
    }
  }
+
  int main(){
+   string playerNumS;
+   int playerNumI;
    cout<<"WELCOME TO MONOPOLY"<<endl;
    cout<<"PRESS 1 IF YOU WANT TO LEARN THE RULE, PRESS ANYOTHER KEYS IF YOU DONT"<<endl;
    int value=0;
-   cin>>value;
+//   getline(cin,value);
    if(value==1){
      cout<<"How does Monopoly work"<<endl;
  cout<<"Each player selects a Token to move around the board."<<endl;
@@ -182,21 +191,26 @@ void Monopoly::printBoard(){
  cout<<"And the boxes will tell us what to do."<<endl;
    }
 
- //   cout<<"Welcome to Monopoly"<<endl;
- //   cout<<"How many players are playing? (4-8 players)"<<endl;
- //   string playerNumS=0;
- //   getline(cin,playerNumS);
- //   while(stoi(playerNumS)<4 || stoi(playerNumS)>8){
- //   if(stoi(playerNumS)<4 ||stoi(playerNumS)>8){
- //     cout<<"Please enter numbere in correct Range"<<endl;
- //     getline(cin,playerNumS);
- //   }
- // }
- //
- //    cout<<"The 1st player will be Player A, 2nd will be B, 3rd C etc."<<endl;
- //    cout<<"Decide who is who. This will also be the order";
+   cout<<"Welcome to Monopoly"<<endl;
+   cout<<"How many players are playing? (4-8 players)"<<endl;
 
-     Monopoly M;
+
+   getline(cin,playerNumS);
+   playerNumI=stoi(playerNumS);
+   while(playerNumI<4 || playerNumI>8){
+   if(playerNumI<4 ||playerNumI>8){
+     cout<<"Please enter numbere in correct Range"<<endl;
+     getline(cin,playerNumS);
+     playerNumI=stoi(playerNumS);
+   }
+ }
+ Monopoly M;
+
+
+    cout<<"The 1st player will be Player A, 2nd will be B, 3rd C etc."<<endl;
+    cout<<"Decide who is who. This will also be the order";
+
+
      string name, color;
      int retail, rent, house,house2, house3, hotel, costHouse, costHotel, Freepark;
      bool chance, jail, tax, owned, cc, GO, EX;
@@ -282,5 +296,3 @@ void Monopoly::printBoard(){
    // cout<<"hi"<<<<"hello"
 
   }
-=======
->>>>>>> cc5f66a20e5fffd550e38c84f544228032865ade
