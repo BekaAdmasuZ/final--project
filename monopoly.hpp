@@ -1,5 +1,5 @@
-#ifndef MONOPOLY_HPP
-#define MONOPOLY_HPP
+#ifndef GRAPH_HPP
+#define GRAPH_HPP
 // #pragma once
 
 
@@ -34,7 +34,6 @@ struct Property{
 struct Player{
   int money;
   std::vector <Property *> owned;
-  std::string name;
   int doublesRolled;
   bool jail;
 };
@@ -45,8 +44,6 @@ class Monopoly{
     ~Monopoly();
     int rollDice();
     bool isEmpty();
-    void addmatrix();
-    void printBoard();
     bool isFull();
     void isTurn();//keeps track of palyers turn and what the rolled on the dice and everything!
     void addplayer(std::string name);//enque
@@ -69,4 +66,3 @@ class Monopoly{
     std::string playerarray[numPlayers];
 
 };
-#endif
