@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
+<<<<<<< HEAD
+=======
+// #include <windows.h>
+#include<chrono>
+#include<thread>
+>>>>>>> 46c6fba9d6835ca12a172d54e6475150ca0872ef
 #include <stdlib.h>
 #include<iostream>
 #include<fstream>
@@ -254,6 +260,7 @@ void Monopoly:: game(){
      b=rollDice();
      cout<<  playerarray[index].C<<" rolled a "<< b<<endl;
      c=a+b;
+<<<<<<< HEAD
        system("PAUSE");
    //   for(int j=0; j<matrix[playerarray[index].x][playerarray[index].y].currPla.size();j++){
    // if(matrix[playerarray[index].x][playerarray[index].y].currPla[j]==playerarray[j].C){
@@ -261,6 +268,16 @@ void Monopoly:: game(){
    //   break;
    // }
    // }
+=======
+     for(int j=0; j<matrix[playerarray[index].x][playerarray[index].y].currPla.size();j++){
+     if(matrix[playerarray[index].x][playerarray[index].y].currPla[j]==playerarray[j].C){
+       savej=j;
+       break;
+   }
+   }
+
+  matrix[playerarray[index].x][playerarray[index].y].currPla.erase(  matrix[playerarray[index].x][playerarray[index].y].currPla.begin());
+>>>>>>> 46c6fba9d6835ca12a172d54e6475150ca0872ef
 
   matrix[playerarray[index].x][playerarray[index].y].currPla.pop();
   //index=ind %  numPlayers;
@@ -460,22 +477,23 @@ index++;
      myFile.close();
    }
     M.addmatrix();
-   cout<<"WELCOME TO MONOPOLY"<<endl;
+   cout<<"---------"<<"WELCOME TO MONOPOLY"<<"---------"<<endl;
    cout<<"PRESS 1 IF YOU WANT TO LEARN THE RULE, PRESS 2 IF YOU DONT"<<endl;
    string value;
    getline(cin,value);
    if(stoi(value)==1){
-        cout<<"How does Monopoly work"<<endl;
+     cout<<"-------------------------------"<<endl;
+        cout<<"--------------"<<"How does Monopoly work"<<"----------------"<<endl;
         cout<<"Each player selects a Token to move around the board."<<endl;
         cout<<"Each token start at the Go box"<<endl;
         cout<<"Each player gets 1500$  (2* $500,  2* $100, 2* $50, 6* $20, 5*10, 5*$5, 5* 1  )"<<endl;
         cout<<"We need a banker that manages the money and property(I guess we can code this)"<<endl;
         cout<<"The blimp spaces send the player to the upper board"<<endl;
-        cout<<"Objective"<<endl;
+        cout<<"---"<<"Objective"<<endl;
         cout<<"To be the richest "<<endl;
         cout<<"Every round a player rolls a dice(we can use our code from 1300) and then the number you get from the dice is the num of boxes you’re going to move."<<endl;
         cout<<"And the boxes will tell us what to do."<<endl;
-        cout<<endl;
+        cout<<"------------------------------------------------------------"<<endl;
 
         cout<<"Great lets start"<<endl;
    }
@@ -500,7 +518,7 @@ index++;
            getline(cin,answer);
            if(answer=="y"||answer=="Y")
            {
-             cout<<"Great lets start"<<endl;
+             // cout<<"Great lets start"<<endl;
              cout<<"Put in next players name"<<endl;
            }
            else{
@@ -518,7 +536,7 @@ index++;
 
 
      M.printBoard();
-     M.game();
+      M.game();
 
    // else{
    //   int counter=0;
