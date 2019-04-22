@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
-#include <windows.h>
 #include <stdlib.h>
 #include<iostream>
 #include<fstream>
@@ -32,7 +31,7 @@ Monopoly::Monopoly(){
  int Monopoly::rollDice(){
    srand(time(NULL)); // Seed the tim
    int finalNum = rand()%(6-1+1)+1;//randomizes number
-   cout<<"You rolled a "<< finalNum<<endl;
+
    return finalNum;
  }
  void Monopoly::addplayer(string name,char car){
@@ -118,7 +117,7 @@ Monopoly::Monopoly(){
 
 //
 void Monopoly::printBoard(){
-    for(int i=0;i<180;i++){
+    for(int i=0;i<200;i++){
       cout<<"-";
     }
     cout<<endl;
@@ -126,10 +125,11 @@ void Monopoly::printBoard(){
   {
     for(int j=0; j<11;j++)
     {
-      int k = 15;
+      int k = 16;
       if(j==0 || j==10 || ((j==3 || j == 7) && i>=3 && i<=7) || ((i==3 || i == 7) && j>=3 && j<=7) || i==0 || i == 10)
       {
-        k = k - matrix[j][i].name.length();
+        k = k - matrix[j][i].name.length()-1;
+        cout<<"|";
         cout<<matrix[j][i].name;
         for(int r = 0; r < k ; r++){
           cout<<" ";
@@ -146,18 +146,22 @@ void Monopoly::printBoard(){
     cout<<"\n"<<endl;
     for(int j=0; j<11;j++)
     {
-      int k = 15;
+      int k = 16;
       if(j==0 || j==10 || ((j==3 || j == 7) && i>=3 && i<=7) || ((i==3 || i == 7) && j>=3 && j<=7) || i==0 || i == 10)
       {
         int sp=0;
         int num = matrix[j][i].retail;
+        cout<<"|";
         if(num > 0){
           while(num != 0){
             num = num/10;
             sp++;
           }
-          k = k - sp - 2;
+          k = k - sp - 3;
           cout<<"$ "<<matrix[j][i].retail;
+        }
+        else{
+          k--;
         }
         for(int r = 0; r < k ; r++){
           cout<<" ";
@@ -174,19 +178,31 @@ void Monopoly::printBoard(){
     cout<<"\n"<<endl;
     for(int j=0; j<11;j++)
     {
-      int k = 15;
+      int k = 16;
       if(j==0 || j==10 || ((j==3 || j == 7) && i>=3 && i<=7) || ((i==3 || i == 7) && j>=3 && j<=7) || i==0 || i == 10)
       {
         int sp=0;
-        queue<char> v = matrix[j][i].currPla;
-        sp = v.size();
+        queue<char> v;
+        sp = matrix[j][i].currPla.size();
+        cout<<"|";
         if(sp){
-          k = k - 2*sp + 1 ;
+          k = k - 2*sp;
           int h;
           for(h = 0; h+1 < sp; h++){
-            cout<<v.front()<<",";
+            v.push(matrix[j][i].currPla.front());
+            cout<<matrix[j][i].currPla.front()<<",";
+            matrix[j][i].currPla.pop();
           }
-          cout<<v.front();
+          v.push(matrix[j][i].currPla.front());
+          cout<<matrix[j][i].currPla.front();
+          matrix[j][i].currPla.pop();
+          for(h=0;h<sp;h++){
+            matrix[j][i].currPla.push(v.front());
+            v.pop();
+          }
+        }
+        else{
+          k--;
         }
         for(int r = 0; r < k ; r++){
           cout<<" ";
@@ -200,23 +216,45 @@ void Monopoly::printBoard(){
         cout<<" ";
       }
     }
+    cout<<endl;
+    for(int j=0; j<11;j++)
+    {
+      int k = 16;
+      if(j==0 || j==10 || ((j==3 || j == 7) && i>=3 && i<=7) || ((i==3 || i == 7) && j>=3 && j<=7) || i==0 || i == 10)
+      {
+        for(int r = 0; r < k+1 ; r++){
+          cout<<"-";
+        }
+      }
+      else{
+        for(int r = 0; r < k ; r++){
+          cout<<" ";
+        }
+        cout<<" ";
+      }
+    }
     cout<<"\n"<<endl;
   }
 
-  for(int i=0;i<180;i++){
+  for(int i=0;i<200;i++){
     cout<<"-";
   }
+  cout<<endl;
  }
-
 void Monopoly:: game(){
    int a,b,c;
    int savej;
+   int ind=0;
    int index=0;
-   for(int i=0; i<2; i++){
+
+   for(int i=0; i<5; i++){
      a=rollDice();
-     sleep(1);
+      cout<< playerarray[index].C<<   " rolled a "<< a<<endl;
+      system("PAUSE");
      b=rollDice();
+     cout<<  playerarray[index].C<<" rolled a "<< b<<endl;
      c=a+b;
+       system("PAUSE");
    //   for(int j=0; j<matrix[playerarray[index].x][playerarray[index].y].currPla.size();j++){
    // if(matrix[playerarray[index].x][playerarray[index].y].currPla[j]==playerarray[j].C){
    //   savej=j;
@@ -225,8 +263,9 @@ void Monopoly:: game(){
    // }
 
   matrix[playerarray[index].x][playerarray[index].y].currPla.pop();
-
+  //index=ind %  numPlayers;
      for(int i=0; i<c; i++){
+
        if(playerarray[index].x==0 && playerarray[index].y!=0 && playerarray[index].y!=10 ){
          playerarray[index].y--;
 
@@ -239,19 +278,43 @@ void Monopoly:: game(){
        }
        else if(playerarray[index].y==0 && playerarray[index].x!=0&& playerarray[index].x!=10){
            playerarray[index].x++;
-             }
-             else if(playerarray[index].y==0 && playerarray[index].x==0){
-               playerarray[index].x++;
-             }
-             else if(playerarray[index].y==0&&playerarray[index].x==10){
-               playerarray[index].y++;
-             }
-             else if(playerarray[index].y==10&&playerarray[index].x==10){
-               playerarray[index].x--;
-             }
-             else if(playerarray[index].y==10&&playerarray[index].x==0){
-               playerarray[index].y--;
-             }
+       }
+       else if(playerarray[index].y==0 && playerarray[index].x==0){
+         playerarray[index].x++;
+       }
+       else if(playerarray[index].y==0&&playerarray[index].x==10){
+         playerarray[index].y++;
+       }
+       else if(playerarray[index].y==10&&playerarray[index].x==10){
+         playerarray[index].x--;
+       }
+       else if(playerarray[index].y==10&&playerarray[index].x==0){
+         playerarray[index].y--;
+       }
+       else if(playerarray[index].x==3 && playerarray[index].y!=3&& playerarray[index].y!=7){
+           playerarray[index].y--;
+       }
+       else if(playerarray[index].x==7 && playerarray[index].y!=3&& playerarray[index].y!=7){
+           playerarray[index].y++;
+       }
+       else if(playerarray[index].y==3 && playerarray[index].x!=3&& playerarray[index].x!=7){
+           playerarray[index].x++;
+       }
+       else if(playerarray[index].y==7 && playerarray[index].x!=3&& playerarray[index].x!=7){
+           playerarray[index].x--;
+       }
+       else if(playerarray[index].y==3&&playerarray[index].x==3){
+         playerarray[index].x++;
+       }
+       else if(playerarray[index].y==3&&playerarray[index].x==7){
+         playerarray[index].y++;
+       }
+       else if(playerarray[index].y==7&&playerarray[index].x==7){
+         playerarray[index].x--;
+       }
+       else if(playerarray[index].y==7&&playerarray[index].x==3){
+         playerarray[index].y--;
+       }
      }
 
 
@@ -259,8 +322,11 @@ void Monopoly:: game(){
 
 printBoard();
 
+index++;
+   if(index==numPlayers){
+     index=0;
    }
-
+}
 
  }
 
