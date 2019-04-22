@@ -36,6 +36,8 @@ struct Player{
   int money;
   std::vector <Property *> owned;
   int doublesRolled;
+  int x;
+  int y;
   bool jail;
 };
 
@@ -66,7 +68,7 @@ class Monopoly{
 
     int Front;             // the index in queue[] that will be dequeued next
     int End;               // the index in queue[] that was most recently enqueued
-    // std::string playerarray[numPlayers];
+    std::string playerarray[8];
 
 };
 #endif
