@@ -1,5 +1,5 @@
-#ifndef MONOPOLY_HPP
-#define MONOPOLY_HPP
+#ifndef GRAPH_HPP
+#define GRAPH_HPP
 // #pragma once
 
 
@@ -44,8 +44,6 @@ class Monopoly{
     ~Monopoly();
     int rollDice();
     bool isEmpty();
-    void addmatrix();
-     void printBoard();
     bool isFull();
     void isTurn();//keeps track of palyers turn and what the rolled on the dice and everything!
     void addplayer(std::string name);//enque
@@ -65,7 +63,6 @@ class Monopoly{
 
     int Front;             // the index in queue[] that will be dequeued next
     int End;               // the index in queue[] that was most recently enqueued
-    std::string playerarray[numPlayers;
+    std::string playerarray[numPlayers];
 
 };
-#endif

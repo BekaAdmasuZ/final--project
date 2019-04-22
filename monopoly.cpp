@@ -6,24 +6,16 @@
 #include<iomanip>
 #include<stdio.h>
 #include<string.h>
-#include"monopoly.hpp"
+#include<vector>
+//#include"monopoly.hpp"
 using namespace std;
- Monopoly::Monopoly(){
-   //consturctor
-   head=NULL;
-   tail=NULL;
-   // for(int i=0;i<11;i++)
-   // {
-   //   for(int j=0;j<11;j++)
-   //   {
-   //     matrix[j][i]= -1;
-   //   }
-   // }
- }
- Monopoly::~Monopoly(){
-   //distructor
-
- }
+ // Monopoly::Monopoly(){
+ //   //consturctor
+ // }
+ // Monopoly::~Monopoly(){
+ //   //distructor
+ //
+ // }
  // int Monopoly::rollDice(){
  //   int value = rand() % 6 + 1;//randomizes number
  //   return value;
@@ -62,84 +54,68 @@ using namespace std;
  //   //update the players status and what property they're on.
  // }
 
- // struct Property{
- //   Property* next;
- //   std::string name;
- //   std::string color;
- //   int retail;
- //   int rent;
- //   int house;
- //   int house2;
- //   int house3;
- //   int hotel;
- //   int costHouse;
- //   int costHotel;
- //   int Freepark;
- //   bool owned;
- //   bool cc;
- //   bool chance;
- //   bool jail;
- //   bool GO;
- //   bool EX;
- //   bool tax;
- //   int xIndex;
- //   int yIndex;
- // };
- // Property * head=NULL;
- // Property *tail=NULL;
- // // prev->next=head;
- // Property matrix[11][11];
+ struct Property{
+   Property* next;
+   std::string name;
+   std::string color;
+   int retail;
+   int rent;
+   int house;
+   int house2;
+   int house3;
+   int hotel;
+   int costHouse;
+   int costHotel;
+   int Freepark;
+   bool owned;
+   bool cc;
+   bool chance;
+   bool jail;
+   bool GO;
+   bool EX;
+   bool tax;
+   int xIndex;
+   int yIndex;
+   //vector <Player> players;
+ };
+ Property * head=NULL;
+ Property *tail=NULL;
+ // prev->next=head;
+ Property matrix[11][11];
 
- void Monopoly::printBoard(){
-    for(int i=0;i<110;i++){
-      cout<<"-";
-    }
-    cout<<endl;
-
-
+ void printBoard(){
+  for(int i=0;i<110;i++){
+    cout<<"-";
+  }
+  cout<<endl;
+  Property *temp=head;
+  // while(temp->next!=head){
   for(int i=0;i<11;i++)
   {
     for(int j=0; j<11;j++)
     {
-      if(j==0 || j==10 || i==0 || i == 10)
+      int k = 15;
+      if(j==0 || j==10 || (j>=3 & j<=7) && (i>=3 && i<=7) || i==0 || i == 10)
       {
-        if(j==0)
-        {
-          cout<<setw(20)<<"|"<<matrix[j][i].name<<"|";
-        }
-        else{
-          cout<<setw(20)<<matrix[j][i].name<<"|";
-        }
-
-      }
-      else
-      {
-        for(int i=0; i<15;i++){
+        k = k - matrix[j][i].name.length();
+        cout<<matrix[j][i].name;
+        for(int r = 0; r < k ; r++){
           cout<<" ";
-        }      }
+        }
+        cout<<"|";
+      }
+      else{
+        for(int r = 0; r < k ; r++){
+          cout<<" ";
+        }
+        cout<<" ";
+      }
     }
     cout<<endl;
   }
     // cout<<setw(10)<<matrix[5][5].name<<"|"<<endl;
 
   // }
-  // Property *temp=head;
-  //  while(temp->next!=head){
-  //
-  //
-  //      if(temp->yIndex==0)
-  //      {
-  //         cout<<setw(10)<<matrix[temp->xIndex][temp->yIndex].name<<"|";
-  //      }
-  //      if(temp->yIndex==11)
-  //      {
-  //
-  //      }
-  //      else{
-  //
-  //      }
-  //      temp=temp->next;
-  //  }
   for(int i=0;i<110;i++){
     cout<<"-";
   }
@@ -165,7 +141,7 @@ using namespace std;
  //  }
  // }
 
- void Monopoly::addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,bool cc_,bool chance_,bool jail_,int Freepark_,bool GO_,bool EX_,bool tax_,bool owned_,int xIndex_,int yIndex_){
+ void addlinkedlist(string name_,string color_,int retail_,int rent_,int house_,int house2_,int house3_,int hotel_,int costHouse_,int costHotel_,bool cc_,bool chance_,bool jail_,int Freepark_,bool GO_,bool EX_,bool tax_,bool owned_,int xIndex_,int yIndex_){
    Property * temp= new Property;
    temp->retail=retail_;
    temp->rent=rent_;
@@ -205,7 +181,7 @@ using namespace std;
     // cout<<"hello"<<endl;
     return;
  }
- void Monopoly::addmatrix()
+ void addmatrix()
  {
    Property *islist=head;
    while(islist->next!=head)
@@ -244,7 +220,6 @@ using namespace std;
        color=info;
         // cout<<color<<endl;
       getline(ss,info,',');
-        cout<<info<<endl;
         retail=stoi(info);
         // cout<<"hello"<<endl;
       getline(ss,info,',');
@@ -283,7 +258,7 @@ using namespace std;
       getline(ss,info,',');
         yIndex =stoi(info);
 
-      M.addlinkedlist(name,color,retail,rent,house,house2,house3,hotel,costHouse,costHotel,cc,chance,jail,Freepark,GO,EX,tax,owned,xIndex,yIndex);
+      addlinkedlist(name,color,retail,rent,house,house2,house3,hotel,costHouse,costHotel,cc,chance,jail,Freepark,GO,EX,tax,owned,xIndex,yIndex);
 
      }
      myFile.close();
