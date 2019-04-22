@@ -88,9 +88,8 @@ using namespace std;
       }
       else
       {
-        for(int i=0; i<15;i++){
-          cout<<" ";
-        }      }
+        cout<<"                            ";
+      }
     }
     cout<<endl;
   }
@@ -171,7 +170,7 @@ using namespace std;
  }
  int main(){
    cout<<"WELCOME TO MONOPOLY"<<endl;
-   cout<<"PRESS 1 IF YOU WANT TO LEARN THE RULE, PRESS ANYOTHER KEYS IF YOU DON'T"<<endl;
+   cout<<"PRESS 1 IF YOU WANT TO LEARN THE RULE, PRESS ANYOTHER KEYS IF YOU DONT"<<endl;
    int value=0;
    cin>>value;
    if(value==1){
@@ -187,7 +186,7 @@ cout<<"To be the richest "<<endl;
 cout<<"Every round a player rolls a dice(we can use our code from 1300) and then the number you get from the dice is the num of boxes you’re going to move."<<endl;
 cout<<"And the boxes will tell us what to do."<<endl;
    }
-
+   else{
      Monopoly M;
      string name, color;
      int retail, rent, house,house2, house3, hotel, costHouse, costHotel, Freepark;
@@ -258,7 +257,7 @@ cout<<"And the boxes will tell us what to do."<<endl;
      M.printBoard();
 
 
-   
+   }
 
    // else{
    //   int counter=0;
