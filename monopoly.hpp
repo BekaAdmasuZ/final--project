@@ -34,6 +34,7 @@ struct Property{
 struct Player{
   int money;
   std::vector <Property *> owned;
+  std::string name;
   int doublesRolled;
   bool jail;
 };
@@ -45,7 +46,7 @@ class Monopoly{
     int rollDice();
     bool isEmpty();
     void addmatrix();
-     void printBoard();
+    void printBoard();
     bool isFull();
     void isTurn();//keeps track of palyers turn and what the rolled on the dice and everything!
     void addplayer(std::string name);//enque
