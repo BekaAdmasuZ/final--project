@@ -1,2 +1,2 @@
-# final--project
+# 3D Monopoly Game
 DATA last project Cominorities
